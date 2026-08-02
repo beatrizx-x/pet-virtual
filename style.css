@@ -103,3 +103,12 @@ width: 100vw;
   left: -4%;
   bottom: 9%;
 }
+
+.container.modo-noite .obj img {
+  filter: brightness(0.6) contrast(0.9) !important;
+
+}
+
+.container.modo-noite .obj .abajur img {
+  filter: brightness(1) !important;
+}
