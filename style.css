@@ -9,15 +9,17 @@ body {
   align-items: center;
 }
 .container {
- position: relative;
+  position: relative;
   width: 100%;
   max-width: 100vw;
   max-height: 100vh;
-  aspect-ratio: 16 / 9; 
-width: 100vw;
+  aspect-ratio: 16 / 9;
+  width: 100vw;
   height: calc(100vw * 9 / 16);
   max-height: 100vh;
   max-width: calc(100vh * 16 / 9);
+image-rendering: pixelated;
+
 }
 .obj {
   display: flex;
@@ -53,43 +55,54 @@ width: 100vw;
   display: block;
 }
 
-.planta, .cama, .racao, .agua, .novelo, .abajur, .quadro {
+.planta,
+.cama,
+.racao,
+.agua,
+.novelo,
+.abajur,
+.quadro {
   position: absolute;
   cursor: pointer;
   pointer-events: auto;
   transition: transform 0.2s ease-in;
 }
-.planta:hover, .racao:hover, .agua:hover, .novelo:hover, .abajur:hover, .quadro:hover {
+.planta:hover,
+.racao:hover,
+.agua:hover,
+.novelo:hover,
+.abajur:hover,
+.quadro:hover {
   transform: scale(1.05);
 }
-.abajur{
+.abajur {
   width: 5%;
   left: 39.7%;
   bottom: 42.6%;
 }
-.cama{
+.cama {
   width: 20%;
   left: 75%;
-  bottom:9%;
- transform: scaleX(-1) ;
- transition: transform 0.3s ease-in;
+  bottom: 9%;
+  transform: scaleX(-1);
+  transition: transform 0.3s ease-in;
 }
 .cama:hover {
- transform: scale(-1.05, 1.05);
+  transform: scale(-1.05, 1.05);
 }
 .racao {
   width: 4%;
   bottom: 20%;
   left: 67%;
 }
-.quadro{
+.quadro {
   width: 7%;
- bottom: 60%;
+  bottom: 60%;
   left: 90%;
 }
 .agua {
   width: 4%;
-   bottom: 22%;
+  bottom: 22%;
   left: 60%;
 }
 
@@ -106,9 +119,24 @@ width: 100vw;
 
 .container.modo-noite .obj img {
   filter: brightness(0.6) contrast(0.9) !important;
-
 }
 
 .container.modo-noite .obj .abajur img {
   filter: brightness(1) !important;
+}
+#gato {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 80%;
+  bottom: 20%;
+  overflow: hidden;
+}
+
+#cat {
+  position: absolute;
+  width: 400px;
+  left: 0;
+  top: 0;
+  image-rendering: pixelated;
 }
