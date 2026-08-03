@@ -20,50 +20,51 @@ function ficarnoite() {
     estaAceso = true;
   }
 }
+//animação do gato
+
 window.addEventListener("load", () => {
-  const cat = document.getElementById("cat");
-
-  let larguraImagem = 400;
-  let totalFrames = 4;
-  let larguraFrame = larguraImagem / totalFrames;
+  const catImage = document.getElementById("cat");
   let frame = 0;
-let posicaoX = 0
+  let totalFrames = 4; 
+  let intervalo;
+
+  // Função central para trocar o sprite e reiniciar a animação
+  function trocarSprite(novaUrl, numeroDeFrames) {
+    // 1. Para a animação atual
+    clearInterval(intervalo);
+    
+    // 2. Troca a imagem
+    catImage.src = novaUrl;
+    
+    // 3. Reseta os cálculos
+    frame = 0;
+    totalFrames = numeroDeFrames;
+    catImage.style.left = "0%";
+    catImage.style.width = (numeroDeFrames * 100) + "%";
+
+    // 5. Reinicia o ciclo de animação
+    intervalo = setInterval(animar, 300);
+  }
+
   function animar() {
-    cat.style.left = -(frame * larguraFrame) + "px";
-
+    catImage.style.left = -(frame * 100) + "%";
     frame++;
-
     if (frame >= totalFrames) {
       frame = 0;
     }
   }
 
-  let intervalo = setInterval(animar, 300);
+  // --- Início do Ciclo ---
+  
+  // 1. Começa com a animação 
+
+  trocarSprite(catImage.src, 4); 
 
   setTimeout(() => {
-    // troca sprite
-    cat.src = "sprites-sheets-2/03-wake-transparent.png";
-
-    // reseta animação
-    frame = 0;
-    cat.style.left = "0px";
-
-    larguraImagem = 400;
-    totalFrames = 4;
-    larguraFrame = larguraImagem / totalFrames;
+    trocarSprite("sprites-sheets-2/03-wake-transparent.png", 4);
   }, 3000);
 
   setTimeout(() => {
-    // troca sprite
-    cat.src = "sprites-sheets-2/01-idle.png";
-
-    // reseta animação
-    frame = 0;
-    cat.style.left = "0px";
-
-    larguraImagem = 400;
-    totalFrames = 4;
-    larguraFrame = larguraImagem / totalFrames;
+    trocarSprite("sprites-sheets-2/01-idle.png", 4); 
   }, 6000);
-
 });
