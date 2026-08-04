@@ -117,12 +117,3 @@ image-rendering: pixelated;
 .container.modo-noite .obj .abajur img {
   filter: brightness(1) !important;
 }
-#gato {
-  position: absolute;
-  height: auto;
-  bottom: 20%; 
-  left: 80%;  
-  z-index: 3; 
-  pointer-events: auto;
-  image-rendering: pixelated;
-}
