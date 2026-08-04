@@ -47,10 +47,7 @@ image-rendering: pixelated;
   height: auto;
   display: block;
 }
-.obj img#cat {
-  width: 400px;
-  height: 100px;
-}
+
 .planta,
 .cama,
 .racao,
@@ -122,23 +119,10 @@ image-rendering: pixelated;
 }
 #gato {
   position: absolute;
-  width: calc(100% * 0.10); 
-  height: calc(100% * 0.10 * (16 / 9)); 
-  left: 79%;
-  bottom: 20%;
-  overflow: hidden;
-  min-width: 0;
-  min-height: 0;
-}
-
-#cat {
-  position: absolute;
-  width: 400% !important;
-  height: 100% !important;
-  top: 0;
-  left: 0;
-  max-width: none !important;
+  height: auto;
+  bottom: 20%; 
+  left: 80%;  
+  z-index: 3; 
+  pointer-events: auto;
   image-rendering: pixelated;
-  margin: 0;
-  padding: 0;
 }

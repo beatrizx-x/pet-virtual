@@ -20,51 +20,70 @@ function ficarnoite() {
     estaAceso = true;
   }
 }
-//animação do gato
 
-window.addEventListener("load", () => {
-  const catImage = document.getElementById("cat");
-  let frame = 0;
-  let totalFrames = 4; 
-  let intervalo;
+//animação do gato 
+const framesDormindo = [
+  "sprite-sheets-3/dormindo/frame1.png",
+  "sprite-sheets-3/dormindo/frame2.png",
+  "sprite-sheets-3/dormindo/frame4.png",
+];
 
-  // Função central para trocar o sprite e reiniciar a animação
-  function trocarSprite(novaUrl, numeroDeFrames) {
-    // 1. Para a animação atual
-    clearInterval(intervalo);
-    
-    // 2. Troca a imagem
-    catImage.src = novaUrl;
-    
-    // 3. Reseta os cálculos
-    frame = 0;
-    totalFrames = numeroDeFrames;
-    catImage.style.left = "0%";
-    catImage.style.width = (numeroDeFrames * 100) + "%";
+const framesAcordando = [
+  "sprite-sheets-3/acordando/frame1.png",
+  "sprite-sheets-3/acordando/frame3.png",
+  "sprite-sheets-3/acordando/frame4.png"
+];
 
-    // 5. Reinicia o ciclo de animação
-    intervalo = setInterval(animar, 300);
+const framesSaindoCama = [
+  "sprite-sheets-3/saindoCama/frame1.png",
+  "sprite-sheets-3/saindoCama/frame2.png",
+  "sprite-sheets-3/saindoCama/frame3.png",
+];
+
+const framesIndoAteUsuario = [
+  "sprite-sheets-3/indo-usuario/frame1.png",
+  "sprite-sheets-3/indo-usuario/frame2.png",
+  "sprite-sheets-3/indo-usuario/frame3.png",
+];
+
+let animacaoAtual = framesDormindo; 
+let indexFrameAtual = 0;
+
+const containerGato = document.getElementById("gato");
+const elementoGato = document.getElementById("cat");
+
+function rodarAnimacao() {
+  elementoGato.src = animacaoAtual[indexFrameAtual];
+
+  if (animacaoAtual === framesAcordando && indexFrameAtual === framesAcordando.length - 1) {
+    iniciarSairDaCama(); 
+    return;
   }
 
-  function animar() {
-    catImage.style.left = -(frame * 100) + "%";
-    frame++;
-    if (frame >= totalFrames) {
-      frame = 0;
-    }
+  if (animacaoAtual === framesSaindoCama && indexFrameAtual === framesSaindoCama.length - 1) {
+    iniciarCaminhadaAteUsuario();
+    return;
   }
 
-  // --- Início do Ciclo ---
+  indexFrameAtual = (indexFrameAtual + 1) % animacaoAtual.length;
+}
+
+setInterval(rodarAnimacao, 150);
+
+setTimeout(() => {
+  animacaoAtual = framesAcordando; 
+  indexFrameAtual = 0; 
+}, 3000); 
+
+function iniciarSairDaCama() {
+  animacaoAtual = framesSaindoCama;
+  indexFrameAtual = 0;
+}
+
+function iniciarCaminhadaAteUsuario() {
+  animacaoAtual = framesIndoAteUsuario;
+  indexFrameAtual = 0;
   
-  // 1. Começa com a animação 
-
-  trocarSprite(catImage.src, 4); 
-
-  setTimeout(() => {
-    trocarSprite("sprites-sheets-2/03-wake-transparent.png", 4);
-  }, 3000);
-
-  setTimeout(() => {
-    trocarSprite("sprites-sheets-2/01-idle.png", 4); 
-  }, 6000);
-});
+  containerGato.style.transition = "left 2.5s linear"; 
+  containerGato.style.left = "40%"; 
+}
